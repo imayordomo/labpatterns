@@ -17,7 +17,7 @@ import domain.Symptom;
 			p.addSymptom(new Symptom("s4", 10, 10), 4);
 			p.addSymptom(new Symptom("s5", 10, 10), 5);
 			
-			
+			//prueba
 			Covid19PacientModelAdapter pacientModelAdapter=new Covid19PacientModelAdapter(p);        
 			
 			JFrame j=new JFrame();
