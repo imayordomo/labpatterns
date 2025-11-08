@@ -1,35 +1,48 @@
 package adapter2;
 
 import javax.swing.table.AbstractTableModel;
-
+import java.util.*;
 import domain.Covid19Pacient;
+import domain.Symptom;
 
 public class Covid19PacientTableModelAdapter extends AbstractTableModel {
-	  protected Covid19Pacient pacient;
-	  protected String[] columnNames =
-	    new String[] {"Symptom", "Weight" };
 
-	  public Covid19PacientTableModelAdapter(Covid19Pacient p) {
-	    this.pacient=p;
-	  }
+    private static final long serialVersionUID = 1L;
+    protected Covid19Pacient pacient;
+    protected String[] columnNames = {"Symptom", "Weight"};
+    protected List<Symptom> symptomList;
 
-	  public int getColumnCount() {
-	    // Challenge!
-		 return 1;
-	  }
+    public Covid19PacientTableModelAdapter(Covid19Pacient p) {
+        this.pacient = p;
+        // Guardamos los síntomas en una lista para acceder por fila
+        this.symptomList = new ArrayList<>(p.getSymptoms());
+    }
 
-	  public String getColumnName(int i) {
-	    // Challenge!
-		  return "Column name 1";
-	  }
+    @Override
+    public int getColumnCount() {
+        return columnNames.length; // 2 columnas: Symptom y Weight
+    }
 
-	  public int getRowCount() {
-	    // Challenge!
-		  return 1;
-	  }
+    @Override
+    public String getColumnName(int i) {
+        return columnNames[i];
+    }
 
-	  public Object getValueAt(int row, int col) {
-	    // Challenge!
-		  return "value";
-	  }
-	}
+    @Override
+    public int getRowCount() {
+        return symptomList.size(); // una fila por síntoma
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+        Symptom s = symptomList.get(row);
+        switch (col) {
+            case 0: // columna 1: nombre del síntoma
+                return s.getName();
+            case 1: // columna 2: peso del síntoma
+                return pacient.getWeight(s);
+            default:
+                return null;
+        }
+    }
+}
