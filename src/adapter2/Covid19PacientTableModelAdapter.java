@@ -32,7 +32,7 @@ public class Covid19PacientTableModelAdapter extends AbstractTableModel {
     public int getRowCount() {
         return symptomList.size(); // una fila por síntoma
     }
-
+    
     @Override
     public Object getValueAt(int row, int col) {
         Symptom s = symptomList.get(row);

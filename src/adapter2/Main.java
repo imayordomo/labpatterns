@@ -25,7 +25,7 @@ public class Main {
 		gui.setPreferredSize(
 			      new java.awt.Dimension(400, 200));
 		gui.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        gui.pack();                // <- MUY IMPORTANTE: ajusta el tamaño al contenido
+        gui.pack();             
         gui.setLocationRelativeTo(null);
 		gui.setVisible(true);
 
