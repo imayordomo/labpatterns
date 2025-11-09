@@ -7,11 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import factory.SymptomFactory;
+
 
 public class Medicament {
 	private String name;
 	private List<Symptom> symptoms=new ArrayList<Symptom>();
-
+	private SymptomFactory factory = new SymptomFactory();
 
 	public String getName() {
 		return name;
@@ -27,8 +29,7 @@ public class Medicament {
 	}
 
 	public Symptom addSymptomByName(String symptom){
-		Symptom s=null;
-		s=createSymptom(symptom);
+		Symptom s = factory.createSymptom(symptom);
 		if (s!=null) {
 			symptoms.add(s);
 		}
